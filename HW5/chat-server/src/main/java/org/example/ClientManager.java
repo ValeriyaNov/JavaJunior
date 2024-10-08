@@ -49,7 +49,7 @@ public class ClientManager implements Runnable {
         String firstName = checkName(message);
         for (ClientManager client : ClientManagerSingleton.getInstance()) {
             try {
-                // если отсылка к приватному сообщению есть, то направляем сообщение ТОЛЬКО одному адресату
+
                 if (firstName != null) {
                     if (client.name.equals(firstName)) {
                         String name = message.split(": ", 2)[0];
@@ -59,9 +59,9 @@ public class ClientManager implements Runnable {
                         client.bufferedWriter.newLine();
                         client.bufferedWriter.flush();
                     }
-                    // Если отсылки на приватное сообщение нет
+
                 } else
-                    // Если клиент не равен по наименованию клиенту-отправителю, отправим сообщение
+
                     if (!client.name.equals(name)) {
                         client.bufferedWriter.write(message);
                         client.bufferedWriter.newLine();
@@ -91,7 +91,7 @@ public class ClientManager implements Runnable {
         System.out.println(name + " покинул чат");
         broadcastMessage("Server: " + name + " покинул чат");
     }
-    // Метод, определяющий наличие отсылки к приватному сообщению
+
     private String checkName(String message) {
         String nameAfter$ = null;
         String firstWord = message.split(": ", 2)[1];
